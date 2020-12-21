@@ -1,4 +1,6 @@
 import discord
+import os
+key = os.environ['token']
 intents = discord.Intents.default()
 intents.typing = True
 intents.presences = True
@@ -43,4 +45,4 @@ async def on_message(message):
             channel = client.get_channel(789694075787935778)
             await channel.purge()
 
-client.run('Nzg5NjkyNzMyODAwNDk5NzEy.X91wqw.1lPxfEsdwSdRCjmaORCiicu2Q4A')
+client.run(key)
