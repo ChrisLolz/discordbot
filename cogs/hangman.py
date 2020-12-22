@@ -87,6 +87,11 @@ class hangman(commands.Cog):
                     self.ranword = random.choice(open("D:\Documents\discordbot\cogs\words").read().split())
                     self.currman = 0
                     self.lines = ['?'] * (len(self.ranword))
+        if self.lines.count("?") == 0:
+            await ctx.send("POGGERS YOU WON!!!")
+            self.ranword = random.choice(open("D:\Documents\discordbot\cogs\words").read().split())
+            self.currman = 0
+            self.lines = ['?'] * (len(self.ranword))
 
     @commands.command()
     async def quit(self,ctx):
