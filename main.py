@@ -6,7 +6,7 @@ key = os.environ['token']
 intents = discord.Intents.default()
 intents.typing = True
 intents.presences = True
-client = commands.Bot(command_prefix='!')
+client = commands.Bot(command_prefix='!', intents=intents)
 client.remove_command('help')
 
 # variables
@@ -14,7 +14,6 @@ client.remove_command('help')
 # look guys
 @client.event
 async def on_member_update(before, after):
-    print('hi')
     if str(before.status) == "online":
         if str(after.status) == "offline":
             channel = client.get_channel(789694075787935778)
