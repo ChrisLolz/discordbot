@@ -1,11 +1,6 @@
 import discord
 import random
 from discord.ext import commands
-
-words = [
-    "BLACKLIVESMATTER", "DRAGON", "SCHOOL", "DONALDTRUMP", "JOEBIDEN"
-]
-
 men = ["https://i.imgur.com/hRzVg1N.png","https://i.imgur.com/cQmLMDO.png","https://i.imgur.com/sAeTvqP.png",
     "https://i.imgur.com/yHGrZqc.png","https://i.imgur.com/UKiV6J9.png","https://i.imgur.com/w7QJQFH.png",
     "https://i.imgur.com/apN30T6.png","https://i.imgur.com/KBMsCp9.png"
@@ -14,7 +9,7 @@ men = ["https://i.imgur.com/hRzVg1N.png","https://i.imgur.com/cQmLMDO.png","http
 class hangman(commands.Cog):
     def __init__(self,client):
         self.client = client
-        self.ranword = random.choice(words)
+        self.ranword = random.choice(open("D:\Documents\discordbot\cogs\words").read().split())
         self.lines = ['?']*(len(self.ranword))
         self.currman = 0
 
@@ -59,8 +54,9 @@ class hangman(commands.Cog):
                     game.set_image(url=men[self.currman])
                     game.set_footer(text="!guess <letter> to guess and !quit to stop playing")
                     await ctx.send(embed=game)
-                    await ctx.send("YOU'RE A LOSER")
-                    self.ranword = random.choice(words)
+                    await ctx.send("YOU'RE A LOSER :joy:")
+                    await ctx.send(f"The word was {self.ranword}")
+                    self.ranword = random.choice(open("D:\Documents\discordbot\cogs\words").read().split())
                     self.currman = 0
                     self.lines = ['?'] * (len(self.ranword))
         else:
@@ -70,7 +66,7 @@ class hangman(commands.Cog):
                 game.set_footer(text="!guess <letter> to guess and !quit to stop playing")
                 await ctx.send(embed=game)
                 await ctx.send("POGGERS YOU GUESSED IT RIGHT!!")
-                self.ranword = random.choice(words)
+                self.ranword = random.choice(open("D:\Documents\discordbot\cogs\words").read().split())
                 self.currman = 0
                 self.lines = ['?'] * (len(self.ranword))
             else:
@@ -86,17 +82,18 @@ class hangman(commands.Cog):
                     game.set_image(url=men[self.currman])
                     game.set_footer(text="!guess <letter> to guess and !quit to stop playing")
                     await ctx.send(embed=game)
-                    await ctx.send("YOU LOST HAHAAHH")
-                    self.ranword = random.choice(words)
+                    await ctx.send("YOU LOST HAHAAHH :joy:")
+                    await ctx.send(f"The word was {self.ranword}")
+                    self.ranword = random.choice(open("D:\Documents\discordbot\cogs\words").read().split())
                     self.currman = 0
                     self.lines = ['?'] * (len(self.ranword))
 
     @commands.command()
     async def quit(self,ctx):
-        self.ranword = random.choice(words)
+        await ctx.send(f"The word was {self.ranword}")
+        self.ranword = random.choice(open("D:\Documents\discordbot\cogs\words").read().split())
         self.currman = 0
-        self.lines = ['?']*(len(self.ranword))
-        await ctx.send("adios amigo")
+        self.lines = ['?'] * (len(self.ranword))
 
 def setup(client):
     client.add_cog(hangman(client))
