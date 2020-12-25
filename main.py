@@ -28,6 +28,10 @@ async def help(ctx):
 async def clear(ctx):
     await ctx.channel.purge()
 
+@client.command()
+async def about(ctx):
+    await ctx.send("Created by the one and only Chris")
+
 client.load_extension("cogs.hangman")
 client.load_extension("cogs.tictactoe")
 client.run(key)
