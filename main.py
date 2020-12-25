@@ -32,6 +32,10 @@ async def clear(ctx):
 async def about(ctx):
     await ctx.send("Created by the one and only Chris")
 
+@client.command()
+async def ping(ctx):
+    await ctx.send(f"Ping is {round(client.latency*1000)}")
+
 client.load_extension("cogs.hangman")
 client.load_extension("cogs.tictactoe")
 client.run(key)
