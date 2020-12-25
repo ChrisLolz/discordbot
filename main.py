@@ -29,4 +29,5 @@ async def clear(ctx):
     await ctx.channel.purge()
 
 client.load_extension("cogs.hangman")
+client.load_extension("cogs.tictactoe")
 client.run(key)
