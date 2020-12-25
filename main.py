@@ -22,7 +22,7 @@ async def on_member_update(before, after):
 # commands
 @client.command()
 async def help(ctx):
-    await ctx.send("Type !hang to play hangman :flushed:\nType !clear to clear all messages in the channel")
+    await ctx.send("Type !hang to play hangman :flushed:\nType !clear to clear all messages in the channel\nType !tictacetoe to play tictactoe")
 
 @client.command()
 async def clear(ctx):
